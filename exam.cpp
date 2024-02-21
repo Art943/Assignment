@@ -56,6 +56,23 @@ public:
 
         return status;
     }
+        bool isFull() const
+    {
+        return counter == N;
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const CBuffer& buffer)
+    {
+        os << "Buffer Elements: ";
+        size_t index = buffer.head;
+        for (size_t i = 0; i < buffer.counter; ++i)
+        {
+            os << buffer.data[index] << " ";
+            index = (index + 1) % N;
+        }
+        os << std::endl;
+        return os;
+    }
     void clear(void)
     {
         data[head] = 0;
